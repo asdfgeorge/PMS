@@ -1,0 +1,27 @@
+{
+  "name": "pms",
+  "version": "1.0.0",
+  "description": "Parking Management System",
+  "main": "index.js",
+  "dependencies": {
+    "express": "^4.17.3"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon index.js",
+    "run": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/asdfgeorge/PMS.git"
+  },
+  "author": "Group 29",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/asdfgeorge/PMS/issues"
+  },
+  "homepage": "https://github.com/asdfgeorge/PMS#readme"
+}
