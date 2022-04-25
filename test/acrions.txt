@@ -1,0 +1,13 @@
+Create USer - post
+edit user - put
+delete - delete
+
+Login User - post 
+Log out User - get 
+
+create booking - post 
+edit booking - put 
+delete booking - delete
+
+checking in - post 
+check out - put 
