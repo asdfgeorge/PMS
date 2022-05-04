@@ -2,6 +2,7 @@
 import bcrypt from 'bcrypt'
 import User from '../models/User.js'
 
+
 export const loginPost = async (req, res) => {
     
     try {

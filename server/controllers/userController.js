@@ -1,7 +1,8 @@
 //import pool from '../db/queries.js';
 import bcrypt from 'bcrypt'
 import User from '../models/User.js'
-
+import User from '../models/Booking.js'
+import User from '../models/Message.js'
 
 // index users
 export const getAllUsers = async (req, res) => {
