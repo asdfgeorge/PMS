@@ -4,6 +4,7 @@ import mongoose from 'mongoose';
 
 // routes import
 import authRoutes from './routes/auth.js'
+import userRoutes from './routes/user.js'
 
 
 const app = express();
@@ -33,6 +34,7 @@ app.get('/', (req, res) => {
 
 // routes
 app.use('/auth', authRoutes);
+app.use('/user', userRoutes);
 
 // start server on port
 app.listen(port, () => {console.log(`Server running on port ${port}`)});
