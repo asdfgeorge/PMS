@@ -1,26 +1,25 @@
 import express from 'express';
 import cors from 'cors';
-
 import mongoose from 'mongoose';
 
-import registerRoute from './routes/register.js'
-import loginRoute from './routes/login.js'
+// routes import
+import authRoutes from './routes/auth.js'
 
 
 const app = express();
 
-
+// environment vars
 const port = 5018;
 const mongo_url = "mongodb://localhost:27017/pms";
 
 // connect to mongoose
 mongoose.connect(mongo_url).then(console.log("connected to MongoDB via Mongoose.")).catch(err => console.log(`Error connecting to db ${err}`));
 
-
+// middleware
 app.use(cors());
 app.use(express.json())
-
 app.use(express.static('../client/dist'))
+
 
 app.get('/', (req, res) => {
     res.sendFile('../client/dist/index.html')
@@ -32,7 +31,8 @@ app.get('/', (req, res) => {
 //     res.status(200)
 // })
 
-app.use('/login', loginRoute);
-app.use('/register', registerRoute);
+// routes
+app.use('/auth', authRoutes);
 
+// start server on port
 app.listen(port, () => {console.log(`Server running on port ${port}`)});
