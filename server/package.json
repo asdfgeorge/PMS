@@ -5,7 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "nodemon index.js"
+    "start": "nodemon --delay 1000ms index.js"
   },
   "keywords": [],
   "author": "",
@@ -15,8 +15,7 @@
     "cors": "^2.8.5",
     "express": "^4.17.3",
     "jsonwebtoken": "^8.5.1",
-    "nodemon": "^2.0.15",
-    "pg": "^8.7.3",
-    "sequelize": "^6.18.0"
+    "mongoose": "^6.3.2",
+    "nodemon": "^2.0.15"
   }
 }

@@ -1,12 +1,21 @@
 import express from 'express';
 import cors from 'cors';
 
+import mongoose from 'mongoose';
+
 import registerRoute from './routes/register.js'
 import loginRoute from './routes/login.js'
 
 
 const app = express();
-const port = 5000;
+
+
+const port = 5018;
+const mongo_url = "mongodb://localhost:27017/pms";
+
+// connect to mongoose
+mongoose.connect(mongo_url).then(console.log("connected to MongoDB via Mongoose.")).catch(err => console.log(`Error connecting to db ${err}`));
+
 
 app.use(cors());
 app.use(express.json())

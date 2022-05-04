@@ -1,39 +1,39 @@
-import pool from '../db/queries.js';
+//import pool from '../db/queries.js';
 import bcrypt from 'bcrypt'
+import User from '../models/User.js'
 
-export const loginPost = (req, res) => {
+export const loginPost = async (req, res) => {
     
-    const email = req.body.email.toLowerCase().trim();
-    const pword = req.body.pword;
+    try {
 
-    pool.query(`SELECT * FROM pms.USERS WHERE EMAIL='${email}'`, (err, result) => {
-        if (err) {
-            console.log(err);
-            res.status(500);
-        };
-        
-        if (result.rows.length === 1) {
-            
-            const user = result.rows[0];
+        // trim and make lowercase
+          const email = req.body.email.toLowerCase().trim();
+          const pword = req.body.pword;
+  
+          // check if this user already exists
+          const user = await User.findOne({email: email});
+          if (user === null) {
+              return res.status(404).send(`User not found`)
+          }
+  
+          // check if password is correct
+          bcrypt.compare(pword, user.pword, (err, result) => {
+              if (err) {
+                return res.status(500).send(`Server error`);
+              }
+              else {
+                  if (result) {
+                    return res.status(200).send(`User ${user._id} (${user.fname} ${user.lname}) logged in.`);
+                  }
+                  else {
+                    return res.status(400).send(`Incorrect password!`)
+                  }
+              }
 
-            bcrypt.compare(pword, user.pword, (err, result) => {
-
-                if (err) {
-                    console.log(err);
-                    res.status(500).send('Error');
-                
-                } else {
-                    if (result) {
-                        res.status(200).send(`correct password for user ${user.fname} ${user.lname}`);
-                    } else {
-                        res.status(400).send('Incorrect password');
-                    };
-                };
-            });        
-           
-        } else {
-            res.status(404).send('User not found');
-        };
-
-    });
+          });
+  
+      }
+      catch(err) {
+          return res.status(500).send(`Server error`);
+      }
 };
