@@ -2,7 +2,8 @@ import mongoose from 'mongoose';
 
 const parkingSpaceSchema = new mongoose.Schema({
         parkingAreaId: {
-            type:ObjectId,
+            type:mongoose.Schema.Types.ObjectId,
+            default: null,
         },
         location: {
             type:String,

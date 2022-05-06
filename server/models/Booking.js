@@ -2,11 +2,11 @@ import mongoose from 'mongoose';
 
 const bookingSchema = new mongoose.Schema({
         userId: {
-            type:ObjectId,
+            type: mongoose.Schema.Types.ObjectId,
             required:true,
         },
         parkingSpaceId: {
-            type: ObjectId,
+            type: mongoose.Schema.Types.ObjectId,
             required:true,
         },
         isApproved: {

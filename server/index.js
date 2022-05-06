@@ -5,8 +5,8 @@ import mongoose from 'mongoose';
 // routes import
 import authRoutes from './routes/auth.js'
 import userRoutes from './routes/user.js'
-//import parkingSpaceRoutes from './routes/parkingSpace.js'
-//import parkingAreaRoutes from './routes/parkingArea.js'
+import parkingSpaceRoutes from './routes/parkingSpace.js'
+import parkingAreaRoutes from './routes/parkingArea.js'
 //import bookingRoutes from './routes/booking.js'
 import messageRoutes from './routes/message.js'
 
@@ -40,6 +40,9 @@ app.get('/', (req, res) => {
 app.use('/auth', authRoutes);
 app.use('/user', userRoutes);
 app.use('/message', messageRoutes);
+
+app.use('/space', parkingSpaceRoutes);
+app.use('/area', parkingAreaRoutes);
 
 // start server on port
 app.listen(port, () => {console.log(`Server running on port ${port}`)});
