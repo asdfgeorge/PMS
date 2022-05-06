@@ -1,9 +1,19 @@
-
-
-
-deleteMessage
 import User from '../models/User.js'
 import Message from '../models/Message.js'
+
+// debug
+export const debugGetAllMessages = async (req, res) => {
+    try {
+        const messages = await Message.find();
+        return res.status(200).json(messages);
+
+    }
+    catch(err) {
+        return res.status(500).send(`Server error`);
+    }
+}
+
+
 
 // create a message to given user
 export const createMessage = async (req, res) => {
@@ -14,9 +24,8 @@ export const createMessage = async (req, res) => {
         // req.body.contents
         
           // check if the user we are sending to exists
-          const sendToUser = await User.findOne({ _id : req.params.userToId });
-          const sendFromUser = await User.findOne({ _id : req.params.userFromId });
-
+          const sendToUser = await User.findOne({ _id : req.body.userToId });
+          const sendFromUser = await User.findOne({ _id : req.body.userFromId });
           if (sendToUser === null) {
               return res.status(404).send(`User to send to was not found`)
           }
@@ -27,8 +36,8 @@ export const createMessage = async (req, res) => {
 
         // new message object
         const newMessage = new Message({
-            userToId: req.params.userToId,
-            userFromId: req.params.userFromId,
+            userToId: req.body.userToId,
+            userFromId: req.body.userFromId,
             contents: req.body.contents,
         });
 
@@ -70,14 +79,15 @@ export const getInbox = async (req, res) => {
           if (user === null) {
               return res.status(404).send(`User not found`)
           }
-          
-          const messages = Message.find({ userToId: req.params.id })
+          const messages = await Message.find({ "userToId": user._id })
 
           return res.status(200).json(messages);
   
       }
       catch(err) {
+        console.log(err);
           return res.status(500).send(`Server error`);
+          
       }
 };
 
@@ -90,7 +100,7 @@ export const getOutbox = async (req, res) => {
               return res.status(404).send(`User not found`)
           }
           
-          const messages = Message.find({ userFromId: req.params.id })
+          const messages = await Message.find({ "userFromId": req.params.id })
 
           return res.status(200).json(messages);
   

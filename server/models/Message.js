@@ -2,11 +2,11 @@ import mongoose from 'mongoose';
 
 const messageSchema = new mongoose.Schema({
         userToId: {
-            type:ObjectId,
+            type:mongoose.Schema.Types.ObjectId,
             required:true,
         },
         userFromId: {
-            type:ObjectId,
+            type:mongoose.Schema.Types.ObjectId,
             required:true,
         },
         contents: {

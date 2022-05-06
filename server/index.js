@@ -5,6 +5,10 @@ import mongoose from 'mongoose';
 // routes import
 import authRoutes from './routes/auth.js'
 import userRoutes from './routes/user.js'
+//import parkingSpaceRoutes from './routes/parkingSpace.js'
+//import parkingAreaRoutes from './routes/parkingArea.js'
+//import bookingRoutes from './routes/booking.js'
+import messageRoutes from './routes/message.js'
 
 
 const app = express();
@@ -35,6 +39,7 @@ app.get('/', (req, res) => {
 // routes
 app.use('/auth', authRoutes);
 app.use('/user', userRoutes);
+app.use('/message', messageRoutes);
 
 // start server on port
 app.listen(port, () => {console.log(`Server running on port ${port}`)});
