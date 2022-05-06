@@ -1,6 +1,11 @@
 import mongoose from 'mongoose';
 
 const userSchema = new mongoose.Schema({
+        isAdmin: {
+            type: Boolean,
+            required: true,
+            default:false
+        },
         fname: {
             type:String,
             required:true,
