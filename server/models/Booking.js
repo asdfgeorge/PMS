@@ -14,20 +14,28 @@ const bookingSchema = new mongoose.Schema({
             required:true,
             default: false
         },
-        CheckedIn: {
-            type:Boolean,
+        CheckInBookedTime: {
+            type:Date,
             required:true,
-            default: false
+            default: null
         },
-        CheckedOut: {
-            type:Boolean,
+        CheckOutBookedTime: {
+            type: Date,
             required:true,
-            default: false
+            default: null
+        },
+        CheckInActualTime: {
+            type:Date,
+            default: null
+        },
+        CheckOutActualTime: {
+            type: Date,
+            default: null
         },
         paidFee: {
-            type:String,
+            type:Boolean,
             required:true,
-            unique:true,
+            default: false
         },
         fee: {
             type:Number,

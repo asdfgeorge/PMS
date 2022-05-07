@@ -7,7 +7,7 @@ import authRoutes from './routes/auth.js'
 import userRoutes from './routes/user.js'
 import parkingSpaceRoutes from './routes/parkingSpace.js'
 import parkingAreaRoutes from './routes/parkingArea.js'
-//import bookingRoutes from './routes/booking.js'
+import bookingRoutes from './routes/booking.js'
 import messageRoutes from './routes/message.js'
 
 
@@ -43,6 +43,7 @@ app.use('/message', messageRoutes);
 
 app.use('/space', parkingSpaceRoutes);
 app.use('/area', parkingAreaRoutes);
+app.use('/booking', bookingRoutes);
 
 /*
 import User from './models/User.js';
