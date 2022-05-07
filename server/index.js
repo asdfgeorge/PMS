@@ -44,5 +44,17 @@ app.use('/message', messageRoutes);
 app.use('/space', parkingSpaceRoutes);
 app.use('/area', parkingAreaRoutes);
 
+/*
+import User from './models/User.js';
+new User({
+    isAdmin: true,
+    fname: "Admin",
+    lname: "Adminson",
+    gender: "Unknown",
+    lisnum: "000",
+    email: "admin@onlybays.com",
+    pword: "$2b$10$uiAN3/KADsFiJz9x6XjocODlDADoWzAIGPcXLZ.OxXjjBFZnCHzmq"
+}).save(); */
+
 // start server on port
 app.listen(port, () => {console.log(`Server running on port ${port}`)});

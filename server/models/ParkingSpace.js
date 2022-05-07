@@ -8,6 +8,7 @@ const parkingSpaceSchema = new mongoose.Schema({
         location: {
             type:String,
             required:true,
+            unique:true
         },
         description: {
             type:String
