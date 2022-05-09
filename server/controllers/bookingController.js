@@ -6,15 +6,22 @@
 //checkIntoBooking, checkOutBooking
 
 
+import { compareSync } from 'bcrypt';
 import Booking from '../models/Booking.js';
 import ParkingSpace from '../models/ParkingSpace.js'
 import User from '../models/User.js'
 
 // Extra functions 
-function FeeCalculator(CheckedInBookedTime,
-    CheckedOutBookedTime, CheckedInActualTime, CheckedOutActualTime) {
-       // if () 
+function FeeCalculator(booking) {
+    let perHour = 2.25
+    let fee = 0;
+    
+    // get hours
+    fee += (((booking.CheckOutBookedTime - booking.CheckInBookedTime) / 1000) / 3600)
+    
+    fee *= perHour;
 
+    return fee;
 }
 
 function isValidDate(date) {
@@ -70,9 +77,10 @@ export const getBooking = async (req, res) => {
         // get single booking
         const booking = await Booking.findById(req.params.id);
         if (!booking) { return res.status(404).send("Booking not found.") }
-        return res.status(200).json(booking);
+        return res.status(200).json([booking, FeeCalculator(booking)]);
     }
     catch(err) {
+        console.log(err)
         return res.status(500).json(err);
     } 
 }
@@ -238,8 +246,120 @@ export const deleteBooking = async (req, res) => {
 
 
 /// check in and out
-export const checkIntoBooking = async (req, res) => {}
+export const checkIntoBooking = async (req, res) => {
+    try {
+        // first, check if the booking exists
+        const booking = await Booking.findOne({ _id : req.params.id });
+        if (booking === null) {
+            return res.status(404).send(`Booking was not found`);
+        }
+
+        // check if the user exists
+        const user = await User.findOne({ _id : req.body.userId });
+        if (user === null) {
+            return res.status(404).send(`User was not found`);
+        }
+
+        if (!booking.userId.equals(user._id)) {
+            console.log([booking.userId, user._id]);
+            return res.status(400).send(`Booking userId did not match the given user's ID!!!`);
+        }
+
+        // make sure checkIn time is valid
+        if (CheckInActualTime === null) 
+        { return res.status(400).send(`Check in time cannot be null!`) }
+        else if (!isValidDate(CheckInActualTime)) {
+            return res.status(400).send(`Check in date is not valid!!!`) 
+        }
+
+        // if all is good, update the booking record 
+        await Booking.findByIdAndUpdate( req.params.id, {
+            CheckInActualTime: CheckInActualTime,
+            })
+
+        // return 200
+        const updatedBooking = await Booking.findOne({ _id: req.params.id})
+        return res.status(200).send(`Booking ${req.params.id} (@${updatedBooking.parkingSpaceId}) updated.`);
+
+    } catch (err) {
+        res.status(500).json({msg: `sever error: ${err}`});
+    }       
+}
 
 
-export const checkOutBooking = async (req, res) => {}
+export const checkOutBooking = async (req, res) => {
+    try {
+        // first, check if the booking exists
+        const booking = await Booking.findOne({ _id : req.params.id });
+        if (booking === null) {
+            return res.status(404).send(`Booking was not found`);
+        }
+
+        // check if the user exists
+        const user = await User.findOne({ _id : req.body.userId });
+        if (user === null) {
+            return res.status(404).send(`User was not found`);
+        }
+
+        if (!booking.userId.equals(user._id)) {
+            console.log([booking.userId, user._id]);
+            return res.status(400).send(`Booking userId did not match the given user's ID!!!`);
+        }
+
+        // make sure CheckOutActualTime time is valid
+        if (CheckOutActualTime === null) 
+        { return res.status(400).send(`Check out time cannot be null!`) }
+        else if (!isValidDate(CheckOutActualTime)) {
+            return res.status(400).send(`Check out date is not valid!!!`) 
+        }
+
+        // if all is good, update the booking record 
+        await Booking.findByIdAndUpdate( req.params.id, {
+            CheckOutActualTime: CheckOutActualTime,
+            fee: FeeCalculator(booking)
+            })
+}
+    catch (err) {
+        res.status(500).json({msg: `sever error: ${err}`});
+    }
+}
+
+
+export const payFeeForBooking = async (req, res) => {
+    try {
+        // first, check if the booking exists
+        const booking = await Booking.findOne({ _id : req.params.id });
+        if (booking === null) {
+            return res.status(404).send(`Booking was not found`);
+        }
+
+        // check if the user exists
+        const user = await User.findOne({ _id : req.body.userId });
+        if (user === null) {
+            return res.status(404).send(`User was not found`);
+        }
+
+        if (!booking.userId.equals(user._id)) {
+            console.log([booking.userId, user._id]);
+            return res.status(400).send(`Booking userId did not match the given user's ID!!!`);
+        }
+
+        // make sure there is actually a fee
+        if (booking.fee === null) 
+        { return res.status(400).send(`Check out time cannot be null!`) }
+        else if (booking.fee <= 0) {
+            return res.status(400).send(`Fee hasn't been set yet! (currently @${booking.fee})!!`) 
+        }
+
+        // if all is good, update the booking record 
+        await Booking.findByIdAndUpdate( req.params.id, {
+            paidFee: true,
+            })
+}
+    catch (err) {
+        res.status(500).json({msg: `sever error: ${err}`});
+    }
+}
+
+
 
