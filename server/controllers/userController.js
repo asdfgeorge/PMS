@@ -93,8 +93,6 @@ export const editUser = async (req, res) => {
 
 // delete user
 export const deleteUser = async (req, res) => {
-       
-
 
     try {
 
