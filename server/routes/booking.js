@@ -2,7 +2,8 @@ import Router from 'express';
 import { createBooking, getAllBookings, 
     getAllBookingsForUser, getBooking,
     editBooking, deleteBooking, checkIntoBooking, 
-    checkOutBooking } from '../controllers/bookingController.js';
+    checkOutBooking, 
+    payFeeForBooking} from '../controllers/bookingController.js';
 
 const router = Router();
 
@@ -16,5 +17,6 @@ router.delete('/:id', deleteBooking);
 // extra routes
 router.put('/checkin/:id', checkIntoBooking);
 router.put('/checkout/:id', checkOutBooking);
+router.put('/pay/:id', payFeeForBooking);
 
 export default router;
