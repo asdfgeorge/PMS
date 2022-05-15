@@ -6,7 +6,7 @@ import User from '../models/User.js'
 export const loginPost = async (req, res) => {
     
     try {
-          console.loginlog('i like beans')
+          console.log('i like beans')
         // trim and make lowercase
           const email = req.body.email.toLowerCase().trim();
           const pword = req.body.pword;
@@ -20,6 +20,7 @@ export const loginPost = async (req, res) => {
           // check if password is correct
           bcrypt.compare(pword, user.pword, (err, result) => {
               if (err) {
+                console.log(err)
                 return res.status(500).send(`Server error`);
               }
               else {
@@ -35,7 +36,11 @@ export const loginPost = async (req, res) => {
           });
   
       }
+
       catch(err) {
+        console.log(err)
           return res.status(500).send(`Server error`);
+
+           
       }
 };
