@@ -24,7 +24,8 @@ export const loginPost = async (req, res) => {
               }
               else {
                   if (result) {
-                    return res.status(200).send(`User ${user._id} (${user.fname} ${user.lname}) logged in.`);
+                    // return res.status(200).send(`User ${user._id} (${user.fname} ${user.lname}) logged in.`);
+                    return res.status(200).json(user);
                   }
                   else {
                     return res.status(400).send(`Incorrect password!`)
