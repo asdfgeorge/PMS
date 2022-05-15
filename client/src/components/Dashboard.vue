@@ -1,12 +1,10 @@
 <template>
-
-<h1>Register to ✨OnlyBays✨</h1>  
-  
+  <h2>You are logged in</h2>
 </template>
 
 <script>
 export default {
-  name: "RegisterView"
+    name: 'authed'
 }
 </script>
 

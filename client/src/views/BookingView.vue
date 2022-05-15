@@ -1,12 +1,10 @@
 <template>
-
-<h1>Register to ✨OnlyBays✨</h1>  
-  
+  <h1>This is the booking view</h1>
 </template>
 
 <script>
 export default {
-  name: "RegisterView"
+
 }
 </script>
 

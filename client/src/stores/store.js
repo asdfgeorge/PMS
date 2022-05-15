@@ -1,15 +1,14 @@
 import { defineStore } from "pinia";
 
 export const useStore = defineStore('auth', {
-    state: () => {
-        return { auth:false }
-    }, 
+    state: () => ({
+        auth: false
+    }), 
 
     actions: {
-        toggleAuth: {
-            toogleAuth() {
-                this.auth = !this.auth
-            }
+        toggleAuth() {
+            this.auth = !this.auth
+            // console.log(this.auth)
         }
     }
 })
