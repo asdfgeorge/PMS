@@ -3,7 +3,7 @@
 <div class="container">
   <h1>Welcome to ✨OnlyBays✨</h1>
 
-  <noAuth v-if="!store.auth" />
+  <noAuth v-if="store.user === null" />
   <authed v-else />
   
 

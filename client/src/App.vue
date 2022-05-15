@@ -3,7 +3,6 @@
   
   <router-view />
   
-  <button class="btn btn-success" @click="toggleAuth()">Toggle auth</button>
   <button class="btn btn-warning" @click="getAllUsers()">Make a request</button>
 
 </template>
@@ -22,7 +21,7 @@ export default {
   }, 
 
   methods: {
-    ...mapActions(useStore, ['toggleAuth', 'getAllUsers']),
+    ...mapActions(useStore, ['getAllUsers']),
 
   }
 }

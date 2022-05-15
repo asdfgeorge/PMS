@@ -14,10 +14,10 @@
         <li class="nav-item">
           <router-link to="/" class="nav-link active">Home</router-link>
         </li>
-        <li class="nav-item" v-if="!store.auth">
+        <li class="nav-item" v-if="store.user === null">
           <router-link to="/register" class="nav-link">Sign Up</router-link>
         </li>
-        <li class="nav-item" v-if="store.auth">
+        <li class="nav-item" v-if="!(store.user === null)">
         <router-link to="/book" class="nav-link">Bookings</router-link>
       </li>
       </ul>

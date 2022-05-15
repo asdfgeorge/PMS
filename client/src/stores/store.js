@@ -3,13 +3,13 @@ import axios from 'axios'
 
 export const useStore = defineStore('auth', {
     state: () => ({
-        auth: false,
+        // auth: false,
         backend: axios.create({
             baseURL: 'http://localhost:5018',
             timeout: 1000,
             headers: {'Access-Control-Allow-Origin': '*'}
           }),
-        //   user: null
+          user: null
     }), 
 
     actions: {
@@ -23,10 +23,16 @@ export const useStore = defineStore('auth', {
             console.log(res.data);
         },
 
-        // async loginUser(loginForm) {
-        //     res = await this.backend.post('/auth/login', loginForm)
+        async loginUser(loginForm) {
+            
+            const res = await this.backend.post('/auth/login', {
+                email: loginForm.email,
+                pword: loginForm.pword
+            })
 
-        //     console.log(res)
-        // }
+            if (res.status === 200) {
+                this.user = res.data
+            }
+        }
     }
 })

@@ -3,7 +3,7 @@
     <h2>You are not logged in</h2>
     
     <section class="w-100 p-4 d-flex justify-content-center pb-4">
-      <form style="width: 22rem;">
+      <form style="width: 22rem;" @submit.prevent="loginUser(loginForm)">
         <!-- Email input -->
         <div class="form-outline mb-4">
           <input type="email" id="form2Example1" class="form-control" v-model="loginForm.email">
@@ -17,7 +17,7 @@
         <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 68px;"></div><div class="form-notch-trailing"></div></div></div>
 
         <!-- Submit button -->
-        <button type="button" class="btn btn-primary btn-block mb-4">Sign in</button>
+        <button type="submit" class="btn btn-primary btn-block mb-4">Sign in</button>
       </form>
     </section>
 
@@ -28,6 +28,8 @@
 </template>
 
 <script>
+import { mapActions } from 'pinia'
+import { useStore } from '../stores/store'
 export default {
   name: 'noAuth',
 
@@ -40,6 +42,10 @@ export default {
       }
     }
   },
+
+  methods: {
+    ...mapActions(useStore, ['loginUser'])
+  }
 
 }
 </script>
