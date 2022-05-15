@@ -8,7 +8,8 @@ export const useStore = defineStore('auth', {
             baseURL: 'http://localhost:5018',
             timeout: 1000,
             headers: {'Access-Control-Allow-Origin': '*'}
-          })
+          }),
+        //   user: null
     }), 
 
     actions: {
@@ -20,6 +21,12 @@ export const useStore = defineStore('auth', {
         async getAllUsers() {
             const res = await this.backend.get('/user')
             console.log(res.data);
-        }
+        },
+
+        // async loginUser(loginForm) {
+        //     res = await this.backend.post('/auth/login', loginForm)
+
+        //     console.log(res)
+        // }
     }
 })
