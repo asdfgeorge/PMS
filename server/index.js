@@ -30,12 +30,6 @@ app.get('/', (req, res) => {
     res.sendFile('../client/dist/index.html')
 })
 
-// using this to test axios endpoints
-// app.post('/test', (req, res) => {
-//     console.log('Req received')
-//     res.status(200)
-// })
-
 // routes
 app.use('/auth', authRoutes);
 app.use('/user', userRoutes);
@@ -44,6 +38,11 @@ app.use('/message', messageRoutes);
 app.use('/space', parkingSpaceRoutes);
 app.use('/area', parkingAreaRoutes);
 app.use('/booking', bookingRoutes);
+
+// default route
+app.get('*', (req, res) => {
+    res.redirect('/');
+});
 
 // init admin user
 // import User from './models/User.js';
