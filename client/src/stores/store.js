@@ -33,6 +33,10 @@ export const useStore = defineStore('auth', {
             if (res.status === 200) {
                 this.user = res.data
             }
+        },
+
+        logout() {
+            this.user = null
         }
     }
 })
