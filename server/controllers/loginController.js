@@ -6,7 +6,7 @@ import User from '../models/User.js'
 export const loginPost = async (req, res) => {
     
     try {
-          console.loginlog('i like beans')
+          console.log('i like beans')
         // trim and make lowercase
           const email = req.body.email.toLowerCase().trim();
           const pword = req.body.pword;
