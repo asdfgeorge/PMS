@@ -45,17 +45,27 @@ app.use('/space', parkingSpaceRoutes);
 app.use('/area', parkingAreaRoutes);
 app.use('/booking', bookingRoutes);
 
-/*
+// init admin user
 import User from './models/User.js';
-new User({
-    isAdmin: true,
-    fname: "Admin",
-    lname: "Adminson",
-    gender: "Unknown",
-    lisnum: "000",
-    email: "admin@onlybays.com",
-    pword: "$2b$10$uiAN3/KADsFiJz9x6XjocODlDADoWzAIGPcXLZ.OxXjjBFZnCHzmq"
-}).save(); */
+const testAdmin = async () => {
+   
+        // get single user
+        const adminCheck = await User.findOne({"isAdmin": true});
+        if (adminCheck === null) {
+            new User({
+                isAdmin: true,
+                fname: "Admin",
+                lname: "Adminson",
+                gender: "Unknown",
+                lisnum: "000",
+                email: "admin@onlybays.com",
+                pword: "$2b$10$uiAN3/KADsFiJz9x6XjocODlDADoWzAIGPcXLZ.OxXjjBFZnCHzmq"
+            }).save(); 
+        } 
+}
+
+testAdmin();
+
 
 // start server on port
 app.listen(port, () => {console.log(`Server running on port ${port}`)});
