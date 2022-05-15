@@ -8,7 +8,7 @@
           <div class="mb-3"><input type="text" class="form-control" placeholder="First Name"></div>
           <div class="mb-3"><input type="text" class="form-control" placeholder="Last Name"></div>
           <div class="mb-3"><input type="text" class="form-control" placeholder="Gender"></div>
-          <div class="mb-3"><input type="text" placeholder=""></div>
+          <div class="mb-3"><input type="text" placeholder="License number"></div>
           <div class="mb-3"><input type="email" class="form-control" placeholder="Email"></div>
           <div class="mb-3"><input type="password" class="form-control" placeholder="Password"></div>
         </form>
