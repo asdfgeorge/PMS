@@ -1,8 +1,10 @@
 <template>
+
   <div class="container">
     <h2>You are logged in</h2>
     <button class="btn btn-danger" @click="logout()">Log Out</button>
   </div>
+
 </template>
 
 <script>
