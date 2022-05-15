@@ -11,3 +11,6 @@ delete booking - delete
 
 checking in - post 
 check out - put 
+
+
+create backend instance in store that can be imported then store request as actions on the store

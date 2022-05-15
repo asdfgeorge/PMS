@@ -12,7 +12,6 @@ const app = createApp(App)
 // app inclusions
 app.use(router)
 app.use(createPinia())
-app.use(cors())
 
 // mounting app
 app.mount('#app')

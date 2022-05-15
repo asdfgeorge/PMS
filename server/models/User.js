@@ -30,14 +30,14 @@ const userSchema = new mongoose.Schema({
             type:String,
             required:true,
         },
-        car: {
-           type: Map,
-           of: String,
-        // will be in the format
-        // lplate: String
-        // brand: String
-        // model: String        
-        }
+        // car: {
+        //    type: Map,
+        //    of: String,
+        // // will be in the format
+        // // lplate: String
+        // // brand: String
+        // // model: String        
+        // }
     },
     { timestamps: true }
 

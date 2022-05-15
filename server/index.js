@@ -15,7 +15,7 @@ const app = express();
 
 // environment vars
 const port = 5018;
-const mongo_url = "mongodb://localhost:27017/pms";
+const mongo_url = "mongodb://127.0.0.1:27017/pms";
 
 // connect to mongoose
 mongoose.connect(mongo_url).then(console.log("connected to MongoDB via Mongoose.")).catch(err => console.log(`Error connecting to db ${err}`));
@@ -46,25 +46,26 @@ app.use('/area', parkingAreaRoutes);
 app.use('/booking', bookingRoutes);
 
 // init admin user
-import User from './models/User.js';
-const testAdmin = async () => {
+// import User from './models/User.js';
+// const testAdmin = async () => {
    
-        // get single user
-        const adminCheck = await User.findOne({"isAdmin": true});
-        if (adminCheck === null) {
-            new User({
-                isAdmin: true,
-                fname: "Admin",
-                lname: "Adminson",
-                gender: "Unknown",
-                lisnum: "000",
-                email: "admin@onlybays.com",
-                pword: "$2b$10$uiAN3/KADsFiJz9x6XjocODlDADoWzAIGPcXLZ.OxXjjBFZnCHzmq"
-            }).save(); 
-        } 
-}
+//         // get single user
+//         const adminCheck = await User.findOne({"isAdmin": true});
+//         if (adminCheck === null) {
+//             new User({
+//                 isAdmin: true,
+//                 fname: "Admin",
+//                 lname: "Adminson",
+//                 gender: "Unknown",
+//                 lisnum: "000",
+//                 email: "admin@onlybays.com",
+//                 pword: "$2b$10$uiAN3/KADsFiJz9x6XjocODlDADoWzAIGPcXLZ.OxXjjBFZnCHzmq"
+//             }).save();
+//             console.log('admin created bitch') 
+//         } 
+// }
 
-testAdmin();
+// testAdmin();
 
 
 // start server on port

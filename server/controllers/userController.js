@@ -6,11 +6,11 @@ import Message from '../models/Message.js'
 
 // index users
 export const getAllUsers = async (req, res) => {
-
+    console.log('I dO geOgrapHy')
     try { 
         // get all users
         const users = await User.find();
-        return res.status(200).json(users);
+            return res.status(200).json(users);
     }
     catch(err) {
         return res.status(500).json(err);
