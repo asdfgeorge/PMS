@@ -1,14 +1,17 @@
 <template>
-  <Navbar :auth="auth" />
+  <Navbar />
   
-  <router-view :auth="auth" />
+  <router-view />
   
   <button class="btn btn-success" @click="toggleAuth()">Toggle auth</button>
 
 </template>
 
 <script>
+import { mapActions } from 'pinia'
 import Navbar from './components/Navbar.vue'
+
+import { useStore } from './stores/store.js'
 
 export default {
   name: 'App',
@@ -17,16 +20,8 @@ export default {
     Navbar: Navbar
   }, 
 
-  data() {
-    return {
-      auth: false
-    }
-  },
-
   methods: {
-    toggleAuth() {
-      this.auth = !this.auth
-    }
+    ...mapActions(useStore, ['toggleAuth'])
   }
 }
 

@@ -3,7 +3,7 @@
 <div class="container">
   <h1>Welcome to ✨OnlyBays✨</h1>
 
-  <noAuth v-if="!auth" />
+  <noAuth v-if="!store.auth" />
   <authed v-else />
 
 </div>
@@ -14,16 +14,20 @@
 import noAuth from '../components/Landing.vue'
 import authed from '../components/Dashboard.vue'
 
+import { useStore } from '../stores/store.js'
+
 export default {
   name:"HomeView",
 
   components: {
     noAuth: noAuth,
     authed: authed
-  },
+  }, 
 
-  props: {
-    auth:Boolean
+  data() {
+    return {
+      store: useStore()
+    }
   }
 }
 </script>
