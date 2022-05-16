@@ -1,7 +1,7 @@
 <template>
 
   <div class="container">
-    <h2>You are logged in</h2>
+    <h2>⚡Hello {{store.user.fname.charAt(0).toUpperCase() + store.user.fname.slice(1)}}⚡</h2>
     <button class="btn btn-danger" @click="logout()">Log Out</button>
   </div>
 
@@ -13,6 +13,12 @@ import {useStore} from '../stores/store.js'
 
 export default {
   name: 'authed',
+
+  data() {
+    return {
+      store: useStore()
+    }
+  },
 
   methods: {
     ...mapActions(useStore, ['logout'])

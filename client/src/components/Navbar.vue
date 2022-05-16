@@ -20,6 +20,9 @@
         <li class="nav-item" v-if="!(store.user === null)">
         <router-link to="/book" class="nav-link">Bookings</router-link>
       </li>
+      <li class="nav-item" v-if="store.user !== null && store.user.isAdmin">
+        <router-link to="/admin" class="nav-link">Manage Parking</router-link>
+      </li>
       </ul>
 
       
