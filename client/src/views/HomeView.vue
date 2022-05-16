@@ -1,10 +1,17 @@
 <template>
 
 <div class="container">
-  <h1>Welcome to ✨OnlyBays✨</h1>
+  <div class="row" v-if="store.user === null" >
+    <div class="col"><h1>Welcome to ✨OnlyBays✨</h1></div>
+    <div class="col"> <noAuth /> </div>
+  </div>
+  
+  <div v-else>
+    <h1>Welcome to ✨OnlyBays✨</h1>
+    <authed/>
 
-  <noAuth v-if="store.user === null" />
-  <authed v-else />
+  </div>
+
   
 
 </div>

@@ -1,8 +1,8 @@
 <template>
   <div class="container">
-    <h2>You are not logged in</h2>
     
-    <section class="w-100 p-4 d-flex justify-content-center pb-4">
+    <h2>You are not logged in</h2>
+    <section class="w-100 d-flex mt-3">
       <form style="width: 22rem;" @submit.prevent="loginUser(loginForm)">
         <!-- Email input -->
         <div class="form-outline mb-4">
@@ -51,5 +51,5 @@ export default {
 </script>
 
 <style>
-
+  
 </style>

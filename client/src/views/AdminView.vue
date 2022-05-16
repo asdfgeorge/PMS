@@ -1,5 +1,11 @@
 <template>
-  <h1>This is the admin view</h1>
+  <div class="container">
+    <h1 class="justify-content-center">Manage Parking👨‍💼</h1>
+
+    <div>
+      
+    </div>
+  </div>
 </template>
 
 <script>

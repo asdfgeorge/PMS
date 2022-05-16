@@ -1,7 +1,7 @@
 <template>
 
   <div>
-  <h1 class="d-flex justify-content-center p-4">This is the booking view</h1>
+  <h1 class="d-flex justify-content-center p-4">Make a Booking 🗓️</h1>
   
   
   <section class="w-100 p-4 d-flex justify-content-center pb-4 flex-column">
@@ -19,6 +19,8 @@
         <!--   Display Pay if has both checkout and checkin time  -->
         <!--   Display check out if has checkin time -->
         <!--  Else display check in -->
+        <div class="mb-3"><button type="button" class="btn btn-primary" @click="getUserBookings()">Get bookings</button></div>
+        
         <div class="mb-3"><button type="button" class="btn btn-primary">Check in</button></div>
         <div class="mb-3"><button type="button" class="btn btn-warning">Check out</button></div>
         <div class="mb-3"><button type="button" class="btn btn-success">Pay</button></div>
@@ -46,8 +48,8 @@
         <div class="form-outline mb-4">
           <label class="form-label" for="form2Example2" style="margin-left: 0px;">ParkingSpaceId</label>
           <input type="text" id="form2Example2" class="form-control">
-          <select name="cars" id="cars" class="form-control">
-            <option value="saab">Parking Place 1</option>
+          <select name="cars" id="cars" class="form-control" v-model="createForm.parkingSpaceId">
+            <option v-for="item in parkingSpaces" :key="item._id" :value="item._id">{{item}}</option>
           </select>
         <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 68px;"></div><div class="form-notch-trailing"></div></div></div>
 
@@ -78,17 +80,30 @@ export default {
 
     return {
       createForm: {
+        parkingSpaceId: '',
         checkInTime: '',
         checkOutTime: '',
-        parkingSpaceId: ''
-      }
+      },
+      parkingSpaces: [],
+      store: useStore(),
     }
   },
 
   methods: {
-    ...mapActions(useStore, ['loginUser'])
-  }
+    ...mapActions(useStore, ['loginUser', 'getUserBookings']),
 
+    submitBookingForm() {
+
+    }
+
+  },
+
+  // async mounted() {
+  //   const res = await this.store.backend.get('/space')
+    
+  //   console.log(res.data)    
+  // }
+  
 }
 </script>
 

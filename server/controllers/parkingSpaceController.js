@@ -4,6 +4,7 @@ import User from '../models/User.js'
 
 // index parking spaces
 export const getAllParkingSpaces = async (req, res) => {
+    console.log('comp sci > geography')
     try { 
         // get all parking spaces
         const parkingSpaces = await ParkingSpace.find();
