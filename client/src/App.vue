@@ -3,15 +3,14 @@
   
   <router-view />
   
-  <button class="btn btn-warning" @click="getAllUsers()">Make a request</button>
 
 </template>
 
 <script>
-import { mapActions } from 'pinia'
+// import { mapActions } from 'pinia'
 import Navbar from './components/Navbar.vue'
 
-import { useStore } from './stores/store.js'
+// import { useStore } from './stores/store.js'
 
 export default {
   name: 'App',
@@ -20,10 +19,9 @@ export default {
     Navbar: Navbar
   }, 
 
-  methods: {
-    ...mapActions(useStore, ['getAllUsers']),
+  // methods: {
 
-  }
+  // }
 }
 
 </script>

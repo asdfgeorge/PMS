@@ -37,6 +37,23 @@ export const useStore = defineStore('auth', {
 
         logout() {
             this.user = null
+        }, 
+
+        async registerUser(registerForm) {
+            
+            const res = await this.backend.post('/auth/register', {
+                fname: registerForm.fname,
+                lname: registerForm.lname,
+                gender: registerForm.gender,
+                lisnum: registerForm.lisnum,
+                email: registerForm.email,
+                pword: registerForm.pword,
+            })
+
+            if (res.status === 201) {
+                this.router.push('/')
+            }
+            
         }
     }
 })

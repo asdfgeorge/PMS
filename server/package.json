@@ -5,7 +5,8 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "nodemon --delay 1000ms index.js"
+    "start": "nodemon --delay 1000ms index.js",
+    "demo": "node index.js"
   },
   "keywords": [],
   "author": "",
