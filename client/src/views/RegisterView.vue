@@ -4,15 +4,6 @@
       <div class = "col login-form">
         <h3>User Registration</h3>
 
-<<<<<<< HEAD
-        <form>
-          <div class="mb-3"><input type="text" class="form-control" placeholder="First Name"></div>
-          <div class="mb-3"><input type="text" class="form-control" placeholder="Last Name"></div>
-          <div class="mb-3"><input type="text" class="form-control" placeholder="Gender"></div>
-          <div class="mb-3"><input type="text" placeholder="License number"></div>
-          <div class="mb-3"><input type="email" class="form-control" placeholder="Email"></div>
-          <div class="mb-3"><input type="password" class="form-control" placeholder="Password"></div>
-=======
         <form @submit.prevent="registerUser(registerForm)">
           <div class="mb-3"><input type="text" class="form-control" placeholder="First Name" v-model="registerForm.fname"></div>
           <div class="mb-3"><input type="text" class="form-control" placeholder="Last Name" v-model="registerForm.lname"></div>
@@ -25,7 +16,7 @@
           <div class="mb-3"><input type="email" class="form-control" placeholder="Email" v-model="registerForm.email"></div>
           <div class="mb-3"><input type="password" class="form-control" placeholder="Password" v-model="registerForm.pword"></div>
           <div class="mb-3"><button type="submit" class="btn btn-success">Submit</button></div>
->>>>>>> f6608d2613fac1556ba718784d5291c59eae8112
+          
         </form>
 
       </div>
